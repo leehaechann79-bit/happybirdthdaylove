@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HappyBirthdayLove 💌🧸</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffd6e0, #fce1ff, #d6f0ff, #fff8d6);
+    background-size: 400% 400%;
+    animation: bgmove 15s ease infinite;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+  }
+
+  @keyframes bgmove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  h1 {
+    color: #ff4fa3;
+    margin-top: 50px;
+    font-size: 2.3em;
+    text-shadow: 2px 2px 10px rgba(255,255,255,0.9);
+    animation: fadeInDown 1.2s ease-out;
+  }
+
+  @keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .bear {
+    width: 180px;
+    margin: 30px auto;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .bear img {
+    width: 180px;
+    height: auto;
+    filter: drop-shadow(0 5px 8px rgba(0,0,0,0.1));
+  }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .buttons {
+    margin-top: 30px;
+    animation: fadeInUp 1.5s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .buttons button {
+    display: block;
+    margin: 12px auto;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 1em;
+    color: white;
+    background: linear-gradient(45deg, #a1c4fd, #c2e9fb);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  }
+
+  .buttons button:hover {
+    transform: scale(1.07);
+    background: linear-gradient(45deg, #ffc7ef, #ffd6f5);
+    box-shadow: 0 6px 18px rgba(255, 170, 220, 0.4);
+    cursor: pointer;
+  }
+
+  .letter {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 90%;
+    max-width: 340px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    padding: 25px;
+    z-index: 1000;
+    animation: popIn 0.5s ease forwards;
+    backdrop-filter: blur(6px);
+  }
+
+  @keyframes popIn {
+    from { opacity: 0; transform: translate(-50%, -45%) scale(0.8); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  }
+
+  .letter h2 {
+    margin-top: 0;
+    color: #5b9eff;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(255,255,255,0.9);
+  }
+
+  .letter p {
+    font-size: 0.95em;
+    line-height: 1.7;
+    color: #444;
+    text-align: left;
+  }
+
+  .close-btn {
+    margin-top: 15px;
+    background: linear-gradient(45deg, #6db6ff, #92d6ff);
+    border: none;
+    color: white;
+    padding: 9px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .close-btn:hover {
+    background: linear-gradient(45deg, #ff8ac8, #ffb6d9);
+    transform: scale(1.05);
+  }
+
+  .love {
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: fall 6s linear infinite;
+    z-index: 0;
+    opacity: 0.9;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2023/03/28/audio_c6dbb5a34f.mp3" type="audio/mpeg">
+</audio>
+
+<h1>🎉 Happy Birthday My Love 💕</h1>
+
+<div class="bear">
+  <img src="https://i.ibb.co/bJ8tBfS/cute-bear-love.gif" alt="bear love">
+</div>
+
+<div class="buttons">
+  <button onclick="openLetter('birthday')">💌 Buka Surat</button>
+  <button onclick="openLetter('hug')">🧸 Peluk Beruang</button>
+  <button onclick="openLetter('gift')">🎁 Lihat Hadiah</button>
+  <button onclick="openLetter('love')">❤️ Aku Sayang Kamu</button>
+  <button onclick="openLetter('virtual')">🤗 Peluk Virtual</button>
+</div>
+
+<div id="letterBox" class="letter" role="dialog" aria-labelledby="letterTitle">
+  <h2 id="letterTitle"></h2>
+  <p id="letterText"></p>
+  <button class="close-btn" onclick="closeLetter()">Tutup 💌</button>
+</div>
+
+<script>
+const hearts = ["❤️","💖","💕","💞","💗","💓"];
+for(let i=0;i<25;i++){
+  const h = document.createElement("div");
+  h.className = "love";
+  h.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+  h.style.left = Math.random()*100 + "vw";
+  h.style.animationDuration = (3 + Math.random()*5) + "s";
+  h.style.fontSize = (18 + Math.random()*10) + "px";
+  document.body.appendChild(h);
+}
+
+function openLetter(type){
+  const box = document.getElementById("letterBox");
+  const title = document.getElementById("letterTitle");
+  const text = document.getElementById("letterText");
+  box.style.display = "block";
+
+  if(type==="birthday"){
+    title.innerHTML="🎂 Surat Ulang Tahun";
+    text.innerHTML=`halooooo sayangkuu 💕,<br><br>
+    kamuu ingett harii inii harii apaa? betull~ harii inii kamuu happy birthday sayangg 🎉<br>
+    Selamatt bertambah umurrr dan sehatt selaluuu 💫<br>
+    Semogaaa apaa yangg kamuu impiikann terwujuddd~ dan kamuuu bisaa jugaaa bahagiainnnn orangg tuaaa kamuu 💖<br><br>
+    You have no idea how much you mean to me 😚<br>
+    Kamu bukann cuma pacar, tapi juga tempat cerita, tempat aku ngeluh, dan alasan kenapa aku bisa senyum setiap hari 🥰<br><br>
+    Tapi jangan lupa satu hal ya Love — no matter how amazing the world gets, you still have a little space in your heart for me 💞 (aku ngga mau digantiin, deal? 😜)<br><br>
+    Pokoknyaaa selamatt ulang tahun sayangkuu 💕`;
+  }
+  else if(type==="hug"){
+    title.innerHTML="🧸 Surat Peluk Manis";
+    text.innerHTML="Bayangin aku lagi peluk kamu erat banget sekarang 🤗 Biar semua capek, sedih, dan khawatirmu hilang sekejap. 💖";
+  }
+  else if(type==="gift"){
+    title.innerHTML="🎁 Surat Hadiah Lucu";
+    text.innerHTML="Cieee nyariin hadiah yaa 😋 Hehe... hadiahnya nyusul yaa sayangku~ Yang penting hatiku udah buat kamu duluan 💝";
+  }
+  else if(type==="love"){
+    title.innerHTML="💖 Surat Cinta";
+    text.innerHTML="Terima kasih sudah hadir, menemani, dan mencintai aku dengan cara paling tulus. Semoga hari ini kamu dikelilingi cinta dan kebahagiaan... terutama dari aku 🥰<br><br>I love you not for what you are, but for how you make me feel – whole and complete 💕";
+  }
+  else if(type==="virtual"){
+    title.innerHTML="🤗 Surat Pelukan Virtual";
+    text.innerHTML="Walau aku gak bisa peluk kamu langsung sekarang, semoga surat ini bisa jadi peluk virtual paling hangat buat kamu 💞";
+  }
+}
+
+function closeLetter(){
+  document.getElementById("letterBox").style.display = "none";
+}
+</script>
+</body>
+</html>
